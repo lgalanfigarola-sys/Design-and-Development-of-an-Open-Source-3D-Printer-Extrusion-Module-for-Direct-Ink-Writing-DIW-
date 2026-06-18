@@ -1,0 +1,59 @@
+;15 DE MAYO, Z OFFSET= -4.40. Sensor de altura toca el cuerpo del extrusor
+; --- Setup ---
+M106 P1 S255        ; Fan 100%
+M302 S0          ; Allow cold extrusion
+G21              ; Metric
+G90              ; Absolute Positioning
+M83              ; Relative Extrusion
+G28              ; Home
+
+; --- Position ---
+G1 Z5 F3000      ; Lift rápido (50 mm/s)
+G1 X77.5 Y190 F3000 ; Mover al punto de inicio (esquina inferior izquierda modificada para el avance)
+G1 Z1 F600      ; Bajar a altura de trabajo
+
+; --- CUADRADO DE 25x25 - RELLENO DIAGONAL CONTINUO (ESPACIADO 2.5mm) ---
+
+G1 X80 Y187.5 E0.07 F250  ; Trayecto inicial a la esquina inferior
+G1 X77.5 Y190 E0.07 F250  ; Diagonal 1 (Corta - Esquina)
+G1 X77.5 Y192.5 E0.06 F250; Conexión en el borde izquierdo (Avanza 2.5mm)
+G1 X82.5 Y187.5 E0.12 F250; Diagonal 2 (Regreso)
+G1 X85 Y187.5 E0.06 F250  ; Conexión en el borde inferior (Avanza 2.5mm)
+G1 X77.5 Y195 E0.17 F250  ; Diagonal 3
+G1 X77.5 Y197.5 E0.06 F250; Conexión izquierda (Avanza 2.5mm)
+G1 X87.5 Y187.5 E0.24 F250; Diagonal 4
+G1 X90 Y187.5 E0.06 F250  ; Conexión inferior (Avanza 2.5mm)
+G1 X77.5 Y200 E0.30 F250  ; Diagonal 5
+G1 X77.5 Y202.5 E0.06 F250; Conexión izquierda (Avanza 2.5mm)
+G1 X92.5 Y187.5 E0.35 F250; Diagonal 6
+G1 X95 Y187.5 E0.06 F250  ; Conexión inferior (Avanza 2.5mm)
+G1 X77.5 Y205 E0.41 F250  ; Diagonal 7
+G1 X77.5 Y207.5 E0.06 F250; Conexión izquierda (Avanza 2.5mm)
+G1 X97.5 Y187.5 E0.47 F250; Diagonal 8
+G1 X100 Y187.5 E0.06 F250 ; Conexión inferior (Avanza 2.5mm)
+G1 X77.5 Y210 E0.53 F250  ; Diagonal 9 (Cruza de esquina inferior derecha a borde izquierdo)
+G1 X77.5 Y212.5 E0.06 F250; Conexión izquierda (Avanza 2.5mm a la esquina superior izquierda)
+G1 X102.5 Y187.5 E0.59 F250; Diagonal 10 (La diagonal más larga: Esquina Superior Izq a Esquina Inferior Der)
+G1 X102.5 Y190 E0.06 F250 ; Conexión derecha (Avanza 2.5mm)
+G1 X80 Y212.5 E0.53 F250  ; Diagonal 11
+G1 X82.5 Y212.5 E0.06 F250; Conexión superior (Avanza 2.5mm)
+G1 X102.5 Y192.5 E0.47 F250; Diagonal 12
+G1 X102.5 Y195 E0.06 F250 ; Conexión derecha (Avanza 2.5mm)
+G1 X85 Y212.5 E0.41 F250  ; Diagonal 13
+G1 X87.5 Y212.5 E0.06 F250; Conexión superior (Avanza 2.5mm)
+G1 X102.5 Y197.5 E0.35 F250; Diagonal 14
+G1 X102.5 Y200 E0.06 F250 ; Conexión derecha (Avanza 2.5mm)
+G1 X90 Y212.5 E0.30 F250  ; Diagonal 15
+G1 X92.5 Y212.5 E0.06 F250; Conexión superior (Avanza 2.5mm)
+G1 X102.5 Y202.5 E0.24 F250; Diagonal 16
+G1 X102.5 Y205 E0.06 F250 ; Conexión derecha (Avanza 2.5mm)
+G1 X95 Y212.5 E0.17 F250  ; Diagonal 17
+G1 X97.5 Y212.5 E0.06 F250; Conexión superior (Avanza 2.5mm)
+G1 X102.5 Y207.5 E0.12 F250; Diagonal 18
+G1 X102.5 Y210 E0.06 F250 ; Conexión derecha (Avanza 2.5mm)
+G1 X100 Y212.5 E0.06 F250 ; Diagonal 19 (Corta - Esquina final)
+
+; --- Clean Up ---
+
+G1 Z25 F3000      ; Quick lift (50 mm/s)
+M84               ; Motors off

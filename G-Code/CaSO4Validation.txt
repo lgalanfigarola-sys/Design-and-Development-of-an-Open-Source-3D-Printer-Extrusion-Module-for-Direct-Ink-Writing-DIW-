@@ -1,0 +1,38 @@
+; --- Setup ---
+M106 P0 S255        ; Fan 100%
+M302 S0          ; Allow cold extrusion
+G21              ; Metric
+G90              ; Absolute Positioning
+M83              ; Relativa Extrusion
+;G28              ; Home
+
+; --- Position ---
+G1 Z5 F3000      ; Lift
+G1 X80 Y200 F3000 ; Move to Start
+G1 Z1 F600      ; Lower to Grease Height
+
+; --- Start Zigzag (10 Passes) ---
+
+G1 X100 E0.34 F300   ;
+G1 Y197 E0.34 F300  ; 
+G1 X80 E0.34 F300    ;
+G1 Y194 E0.34 F300  ; 
+G1 X100 E0.34  F300  ;
+G1 Y191 E0.34 F300  ; 
+G1 X80 E0.34  F300   ; 
+G1 Y188 E0.34 F300  ; 
+G1 X100 E0.34  F300  ; 
+G1 Y185 E0.34 F300  ; 
+G1 X80 E0.34  F300   ; 
+G1 Y182 E0.34 F300  ; 
+G1 X100 E0.34  F300  ; 
+G1 Y179 E0.34 F300  ; 
+G1 X80 E0.34  F300   ; 
+G1 Y176 E0.34 F300  ; 
+G1 X100 E0.34  F300  ; 
+G1 Y173 E0.34 F300  ; 
+G1 X80 E0.34  F300   ; 
+
+; --- Clean Up ---
+G1 Z25 F3000      ; Quick lift
+M84               ; Motors off
